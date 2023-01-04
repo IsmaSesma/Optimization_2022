@@ -142,10 +142,30 @@ beq_heu = [AOA*1E2 AOA_t hft hft_t Fm/1E3];
 
 [X_heu, F_heu, exitflag_heu, output_heu, lambda_heu, grad_heu, hessian_heu] = fmincon(@coste_heu, rescale_init, A, b_heu', Aeq, beq_heu', [], [], [], options);
 
-%% Optimización -- heurística
+% Optimización -- heurística
 
-options_ga = gaoptimset('Display','iter');
+    % Genetic Algorithm
+options_ga = optimoptions('ga','Display','iter');
 [X_ga, F_ga, exitflag_ga, output_ga, population_ga, scores_ga] = ga(@coste_heu, 10, A, b_heu, Aeq, beq_heu, [], [], [], [], options_ga);
+
+    % Pattern Search
+options_PS = optimoptions("patternsearch", 'Display','iter');
+[X_PS, F_PS, exitflag_PS, output_PS] = patternsearch(@coste_heu, rescale_init, A, b_heu, Aeq, beq_heu, [], [], [], options_PS);
+
+    % Particle Swarm
+options_PS = optimoptions("particleswarm", 'Display','iter');
+[X_PSW, F_PSW, exitflag_PSW, output_PSW] = particleswarm(@coste_heu, rescale_init, [], [], options_PS);
+
+%% Optimización Multiobjetivo
+
+% paretosearch
+options_pareto = optimoptions('paretosearch','Display','iter');
+[X_pareto, F_pareto, exitflag_pareto, output_pareto] = paretosearch(@coste_heu, 10, A, b_heu, Aeq, beq_heu, [], [], [], options_pareto);
+
+% Genetic Algorithm MOO
+options_gam = optimoptions('gamultiobj','Display','iter');
+[X_gam, F_gam, exitflag_gam, output_gam, population_gam, scores_gam] = gamultiobj(@coste_heu, 10,  A, b_heu, Aeq, beq_heu, [], [], [], [], options_gam););
+
 
 %% FUNCIONES 
 
