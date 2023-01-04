@@ -88,8 +88,11 @@ precio_combustible = 1;
 
 %% OPTIMIZACIÓN MONO-OBJETIVO
 
+% Gradiente
 options = optimoptions('fmincon','Display','iter','MaxIterations',6, 'Algorithm','sqp');
 [X, F, exitflag, output, lambda, grad, hessian] = fmincon(@coste_monoobjetivo, vect_init_mono, A, b', Aeq, beq', [], [], [], options);
+
+% Heurística
 
 % FUNCIONES 
 
