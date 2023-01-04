@@ -92,9 +92,11 @@ precio_combustible = 1;
 options = optimoptions('fmincon','Display','iter','MaxIterations',6, 'Algorithm','sqp');
 [X, F, exitflag, output, lambda, grad, hessian] = fmincon(@coste_monoobjetivo, vect_init_mono, A, b', Aeq, beq', [], [], [], options);
 
+% Sensibilidad
+
 % Heurística
 
-% FUNCIONES 
+%% FUNCIONES 
 
 function coste_total = coste_monoobjetivo(x)
 
