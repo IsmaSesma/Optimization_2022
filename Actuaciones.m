@@ -73,7 +73,7 @@ function [R, Aut, To, Rt, To_t, gforce, mu_deg, T_min, SFC] = Actuaciones(hft, h
         funcion_SFC = coefs(1)*x.^2 + coefs(2)*x + coefs(3);
         SFC_o = coefs(1)*T_min^2 + coefs(2)*T_min + coefs(3);
 
-         disp('No hace falta postcombustor')
+%          disp('No hace falta postcombustor')
 
 %         figure
 %         plot(valores_T, valores_SFC, '*')
@@ -93,7 +93,7 @@ function [R, Aut, To, Rt, To_t, gforce, mu_deg, T_min, SFC] = Actuaciones(hft, h
         funcion_SFC = coefs(1)*x.^2 + coefs(2)*x + coefs(3);
         SFC_o = coefs(1)*T_min^2 + coefs(2)*T_min + coefs(3);
 
-         disp('Es necesario postcombustor')
+%          disp('Es necesario postcombustor')
 
 %         figure
 %         plot(valores_T_af, valores_SFC_af, '*')
